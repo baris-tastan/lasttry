@@ -1,6 +1,6 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import {  Check, StarIcon, User } from 'lucide-react'
+import {  StarIcon, User } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useInView } from 'react-intersection-observer'
@@ -318,9 +318,7 @@ export default function ReviewList({
               <CardHeader>
                 <div className='flex-between'>
                   <CardTitle>{review.title}</CardTitle>
-                  <div className='italic text-sm flex'>
-                    <Check className='h-4 w-4' /> Verified Purchase
-                  </div>
+                  
                 </div>
                 <CardDescription>{review.review}</CardDescription>
               </CardHeader>
