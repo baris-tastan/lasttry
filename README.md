@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is the URL of my Vercel deployment:
 
-## Getting Started
+https://lasttry2139.vercel.app
 
-First, run the development server:
+An admin user credentials are:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    alice.admin@example.com
+    securepassword123
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    
+A regular user credentials are:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    bobbuyer@example.com
+    password456
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I used Next.Js, because that was the easiest to find a tutorial on, and because that was created by Vercel I thought it would be the best option.
+I used mongoDB and  as per the instructions.
+I used tailwind and shadcn components for the UI.
+I used auth.js for user authentication.
+I used zod to create entity models.
 
-## Learn More
+If you are not logged in you can only browse the products and read the reviews.
 
-To learn more about Next.js, take a look at the following resources:
+If you are logged in as a regular user, you can comment on products,
+you also have access to your own account page from the top right item.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you are logged in as an admin user, you have two more options show up on the top right menu.
+One is the products page, the other is the users page.
+On the users page you can delete users, and add a user by clicking on top right button. You enter the details on the form and click create user.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+On the product page you enter product details and click on create product.
+You can also view and delete products from this page.
 
-## Deploy on Vercel
+But roduct image can only be:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+/images/shoe.jpeg
+/images/gps.jpeg
+/images/vinyl.jpeg
+/images/antique.jpeg
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
