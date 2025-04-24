@@ -150,7 +150,7 @@ if (foundProduct) {
   await foundProduct.save();
 } else {
   // Handle the case where no product is found
-  // For example, you could throw an error or return a default value
+  
   throw new Error(`Product not found with ID ${productId}`);
 }
   await foundProduct.save();
