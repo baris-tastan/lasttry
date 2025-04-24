@@ -75,16 +75,16 @@ export async function deleteUser(id: string) {
 
     // 2. Process each review
     for (const review of userReviews) {
-      // a. Remove review from product's reviews array
+      // 1. Remove review from product's reviews array
       await Product.updateOne(
         { _id: review.product },
         { $pull: { reviews: review._id } }
       ).session(session);
 
-      // b. Delete the review document
+      // 2. Delete the review document
       await Review.findByIdAndDelete(review._id).session(session);
 
-      // c. Recalculate product stats
+      // 3. Recalculate product stats
       await updateProductReviewStats(review.product, session);
     }
 
@@ -111,25 +111,33 @@ export async function deleteUser(id: string) {
   }
 }
 
-// Helper function to update all product review statistics
+
 async function updateProductReviewStats(productId: string, session?: ClientSession) {
-  // Get all remaining reviews for this product
+  
   const reviews = await Review.find({ product: productId })
     .session(session || null)
     .lean();
 
   const numReviews = reviews.length;
 
-  // Calculate new average rating (assuming rating is 1-10 scale)
+  
   const avgRating = numReviews > 0 
     ? reviews.reduce((sum, review) => sum + review.rating, 0) / numReviews
     : 0;
 
-  // Calculate rating distribution (example for 10, 8, 6 ratings)
+  
   const ratingDistribution = [
     { rating: 10, count: reviews.filter(r => r.rating === 10).length },
     { rating: 8, count: reviews.filter(r => r.rating === 8).length },
     { rating: 6, count: reviews.filter(r => r.rating === 6).length },
+    { rating: 9, count: reviews.filter(r => r.rating === 10).length },
+    { rating: 7, count: reviews.filter(r => r.rating === 8).length },
+    { rating: 5, count: reviews.filter(r => r.rating === 6).length },
+    { rating: 4, count: reviews.filter(r => r.rating === 10).length },
+    { rating: 3, count: reviews.filter(r => r.rating === 8).length },
+    { rating: 2, count: reviews.filter(r => r.rating === 6).length },
+    { rating: 1, count: reviews.filter(r => r.rating === 10).length },
+    
   ];
 
   // Update the product with new stats
@@ -151,11 +159,11 @@ export async function getAllUsers() {
 
   const users = await User.find()
     .sort({ createdAt: 'desc' })
-    .lean() // Use lean() instead of JSON.parse(JSON.stringify()) for better performance
+    .lean() 
 
   return {
     data: users as IUser[],
-    // You can keep totalPages as 1 or remove it completely if not needed
+    
     totalPages: 1,
   }
 }
